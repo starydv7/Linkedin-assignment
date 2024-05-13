@@ -1,0 +1,24 @@
+.layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    height: 100vh;
+  }
+  
+  .component {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+  }
+  
+  .left-pane,
+  .middle-pane,
+  .right-pane {
+    background-color: #ffffff;
+    overflow: hidden;
+  }
+  
