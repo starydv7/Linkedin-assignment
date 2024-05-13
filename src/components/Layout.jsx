@@ -9,50 +9,70 @@ const Layout = () => {
     right: 300
   });
 
-  const handleResize = (direction, component, size) => {
-    const newSize = { ...componentWidths, [component]: size.width };
-    setComponentWidths(newSize);
+  const handleResize = (component, size) => {
+    setComponentWidths(prevWidths => ({
+      ...prevWidths,
+      [component]: size.width
+    }));
   };
 
   return (
     <div className="layout">
       <Resizable
         defaultSize={{ width: componentWidths.left, height: "100%" }}
-        minWidth={100}
-        maxWidth="70%"
-        onResize={(e, direction, size) =>
-          handleResize(direction, "left", size)
-        }
+        enable={{
+          top: false,
+          right: true,
+          bottom: true,
+          left: true,
+          topRight: false,
+          bottomRight: true,
+          bottomLeft: true,
+          topLeft: false
+        }}
+        onResizeStop={(e, direction, ref, d) => handleResize("left", ref.style)}
       >
         <div className="component left">
           <h2>Left Component</h2>
-          <p>Resizable from right</p>
+          <p>Resizable from all sides</p>
         </div>
       </Resizable>
       <Resizable
         defaultSize={{ width: componentWidths.middle, height: "100%" }}
-        minWidth={100}
-        maxWidth="70%"
-        onResize={(e, direction, size) =>
-          handleResize(direction, "middle", size)
-        }
+        enable={{
+          top: true,
+          right: true,
+          bottom: true,
+          left: true,
+          topRight: false,
+          bottomRight: true,
+          bottomLeft: true,
+          topLeft: false
+        }}
+        onResizeStop={(e, direction, ref, d) => handleResize("middle", ref.style)}
       >
         <div className="component middle">
           <h2>Middle Component</h2>
-          <p>Resizable from both sides</p>
+          <p>Resizable from all sides</p>
         </div>
       </Resizable>
       <Resizable
         defaultSize={{ width: componentWidths.right, height: "100%" }}
-        minWidth={100}
-        maxWidth="70%"
-        onResize={(e, direction, size) =>
-          handleResize(direction, "right", size)
-        }
+        enable={{
+          top: true,
+          right: true,
+          bottom: true,
+          left: true,
+          topRight: false,
+          bottomRight: true,
+          bottomLeft: true,
+          topLeft: false
+        }}
+        onResizeStop={(e, direction, ref, d) => handleResize("right", ref.style)}
       >
         <div className="component right">
           <h2>Right Component</h2>
-          <p>Resizable from left</p>
+          <p>Resizable from all sides</p>
         </div>
       </Resizable>
     </div>
